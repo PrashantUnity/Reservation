@@ -1,0 +1,85 @@
+﻿@page "/Profile"
+@inject CurrentContextData currentContextData
+
+<PageTitle>Customer</PageTitle>
+
+<div class="card">
+	<div class="card-body">
+		
+		<EditForm Model="@customer" OnSubmit="@HandleSubmit">
+			<label for="Firstname">FirstName</label>
+			<div class="input-group input-group-lg m-2">
+				<InputText 
+					id="Firstname"
+					class="form-control"
+					aria-label="Large"
+					aria-describedby="inputGroup-sizing-sm"
+					@bind-Value="customer.FirstName" />
+			</div>
+			<label for="Lastname">FirstName</label>
+			<div class="input-group input-group-lg m-2">
+				<InputText 
+					id="Lastname"
+					class="form-control"
+					aria-label="Large"
+					aria-describedby="inputGroup-sizing-sm" 
+					@bind-Value="customer.LastName" />
+			</div>
+			<label>Country Code</label>
+			<div class="input-group input-group-lg m-2">
+				<InputSelect 
+					class="form-control"
+					aria-label="Large"
+					aria-describedby="inputGroup-sizing-sm" 
+					@bind-Value="@customer.CountryCode">
+					@foreach (var item in countryCode)
+					{
+						<option value="@item.Item2">@item.Item2 @item.Item1 </option>
+					}
+				</InputSelect>
+			</div>
+			<label for="Phone">Phone Number</label>
+			<div class="input-group input-group-lg m-2">
+				<InputText 
+					id="Phone" 
+					class="form-control"
+					aria-label="Large"
+					aria-describedby="inputGroup-sizing-sm" 
+					@bind-Value="customer.PhoneNumber" />
+			</div>
+			<div class="input-group input-group-lg m-2">
+				<button 
+					class="form-control"
+					aria-label="Large"
+					aria-describedby="inputGroup-sizing-sm" 
+					type="submit">
+					Submit
+				</button>
+			</div>
+		</EditForm>
+	</div>
+</div>
+
+@code {
+
+
+	public Customer customer = new Customer();
+	private List<(string, string)> countryCode = new List<(string, string)>
+	{
+		("United States","1"),
+		("Egypt","20"),
+		("United Kingdom","44"),
+		("Poland","48"),
+		("Germany","49"),
+		("India","91")
+	};
+
+	protected override void OnInitialized()
+	{
+		customer = currentContextData.Customers;
+	}
+	public void HandleSubmit()
+	{
+		currentContextData.Customers = customer;
+	}
+}

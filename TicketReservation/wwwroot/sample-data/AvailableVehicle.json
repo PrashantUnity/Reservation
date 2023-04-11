@@ -1,0 +1,47 @@
+[
+  {
+    "VehicleTypes": "X",
+    "StartTime": "10:30 AM",
+    "ReachTime": "12:30 PM",
+    "VehicleNumber": "XHSNSLDY",
+    "TotalDistance": "56.4",
+    "CostPerKm": "3",
+    "Total Cost": "168"
+  },
+  {
+    "VehicleTypes": "XL",
+    "StartTime": "10:30 AM",
+    "ReachTime": "12:30 PM",
+    "VehicleNumber": "XHSNSLDY",
+    "TotalDistance": "56.4",
+    "CostPerKm": "3",
+    "Total Cost": "168"
+  },
+  {
+    "VehicleTypes": "SELECT",
+    "StartTime": "10:30 AM",
+    "ReachTime": "12:30 PM",
+    "VehicleNumber": "XHSNSLDY",
+    "TotalDistance": "56.4",
+    "CostPerKm": "3",
+    "Total Cost": "168"
+  },
+  {
+    "VehicleTypes": "SUV",
+    "StartTime": "10:30 AM",
+    "ReachTime": "12:30 PM",
+    "VehicleNumber": "XHSNSLDY",
+    "TotalDistance": "56.4",
+    "CostPerKm": "3",
+    "Total Cost": "168"
+  },
+  {
+    "VehicleTypes": "BLACK",
+    "StartTime": "10:30 AM",
+    "ReachTime": "12:30 PM",
+    "VehicleNumber": "XHSNSLDY",
+    "TotalDistance": "56.4",
+    "CostPerKm": "3",
+    "Total Cost": "168"
+  }
+]
