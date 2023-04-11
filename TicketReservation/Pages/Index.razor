@@ -8,7 +8,7 @@
 		<div class="row">
 			@foreach (var i in availableVehicles)
 			{
-				<Vehicle boardingVehicle="@i" searchVechile="@search" OrderedVehicle="ReserveVehicle" />
+				<Vehicle availableVehicle="@i" searchVechile="@search" OrderedVehicle="ReserveVehicle" />
 			}
 		</div>
 	</div>  						
@@ -23,7 +23,7 @@
 		search = searchVehicle;
 		availableVehicles = await context.GetAvailableVehiclesAsync(searchVehicle) ;
 	}
-	public void ReserveVehicle(Order order)
+	public  void ReserveVehicle(Order order)
 	{
 		context.ReserveVehicleAsync(order);
 	}

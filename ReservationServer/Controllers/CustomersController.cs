@@ -17,14 +17,14 @@ namespace ReservationServer.Controllers
 
 		// POST api/<CustomersController>
 		[HttpPost]
-		public void Post( Customer customer)
+		public void Post([FromQuery] Customer customer)
 		{
 
 		}
 
 		// PUT api/<CustomersController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public void Put(int id, [FromQuery] string value)
 		{
 		}
 

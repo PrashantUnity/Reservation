@@ -1,5 +1,5 @@
 ﻿@page "/Profile"
-@inject CurrentContextData currentContextData
+@inject CurrentContextData context
 
 <PageTitle>Customer</PageTitle>
 
@@ -61,9 +61,8 @@
 </div>
 
 @code {
-
-
 	public Customer customer = new Customer();
+	public (string, string) country = ("India", "91");
 	private List<(string, string)> countryCode = new List<(string, string)>
 	{
 		("United States","1"),
@@ -76,10 +75,10 @@
 
 	protected override void OnInitialized()
 	{
-		customer = currentContextData.Customers;
+		customer = context.Customers;
 	}
 	public void HandleSubmit()
-	{
-		currentContextData.Customers = customer;
+	{ 
+		context.Customers = context.GetCustomer(customer);
 	}
 }

@@ -18,7 +18,7 @@ namespace ReservationServer.Controllers
         }
         // GET api/<TicketsController>/5
         [HttpGet("{id}")]
-		public ActionResult<IEnumerable<Order>> Get(Guid id)
+		public ActionResult<IEnumerable<Order>> Get([FromQuery] string id)
 		{
 			var ls = repository.GetAllOrders(id);
 			return Ok(ls) ;

@@ -17,7 +17,7 @@ namespace ReservationServer.Controllers
 
 		// GET api/Search/
 		[HttpGet]
-		public ActionResult<IEnumerable<AvailableVehicle>> Get(SearchVehicle searchVehicle)
+		public ActionResult<IEnumerable<AvailableVehicle>> Get([FromQuery] SearchVehicle searchVehicle)
 		{
 			return Ok( repository.GetAvailableVehicle(searchVehicle));
 		}

@@ -16,24 +16,36 @@ namespace TicketReservation.Service
 				CountryCode = "91",
 				PhoneNumber = "1234567890"
 			};
+		public Customer GetCustomer( Customer customer)
+		{
+			if( customer.PhoneNumber==Customers.PhoneNumber)
+			{
+				return customer;
+			}
+			else
+			{
+				customer.Id = new Guid();
+				return customer;
+			}
+		}
 		public CurrentContextData(HttpClient httpClient)
 		{
 			this.httpClient = httpClient;
 		}
 		public async Task<IEnumerable<AvailableVehicle>> GetAvailableVehiclesAsync(SearchVehicle searchVehicle)
 		{
-			var vehicleList = await httpClient.GetFromJsonAsync<List<AvailableVehicle>>($"api/search/{searchVehicle}"); 
+			var vehicleList = await httpClient.GetFromJsonAsync<AvailableVehicle[]>($"api/search/{searchVehicle}"); 
 			return vehicleList;
 		}
 		public async void ReserveVehicleAsync(Order order)
 		{
 			var result = await httpClient.PostAsJsonAsync("api/Reserve", order);
-
+			// left some modification for 201 return Response result
 		}
 
 		public async Task<IEnumerable<Order>> GetOrdersAsync()
 		{
-			var orders = await httpClient.GetFromJsonAsync<List<Order>>("api/orders");
+			var orders = await httpClient.GetFromJsonAsync<Order[]>($"api/orders/{Customers.PhoneNumber}");
 			return orders;
 		}
 		public string GenerateNumber(int length)

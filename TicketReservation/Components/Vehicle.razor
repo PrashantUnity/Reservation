@@ -4,7 +4,7 @@
 	<div class=" card text-center m-2" style="width: 18rem;">
 
 		<h3 class="card-header text-start">
-			Car Type : @boardingVehicle.VechileTypes
+			Car Type : @availableVehicle.VechileTypes
 		</h3>
 		<div class="card-body">
 			<div class="card-title d-flex justify-content-between">
@@ -28,21 +28,22 @@
 @code {
 	#region Parameter
 	[Parameter, EditorRequired]
-	public AvailableVehicle boardingVehicle { get; set; }
+	public AvailableVehicle availableVehicle { get; set; }
 
 	[Parameter, EditorRequired]
 	public SearchVehicle searchVechile { get; set; }
 
 	[Parameter, EditorRequired]
 	public EventCallback<Order> OrderedVehicle { get; set; }
+
 	private int orderIdLength = 5;
 	string start = "",startDate = "",end = "",endDate = "", diff = "";
 	#endregion
 
 	protected override void OnInitialized()
 	{ 
-		var startTime = DateTime.Parse(boardingVehicle.StartTime);
-		var reachTime = DateTime.Parse(boardingVehicle.ReachTime);
+		var startTime = DateTime.Parse(availableVehicle.StartTime);
+		var reachTime = DateTime.Parse(availableVehicle.ReachTime);
 
 		start = startTime.ToString("HH mm");
 		end = reachTime.ToString("HH mm");
@@ -50,16 +51,18 @@
 		startDate = startTime.ToString("MMMM dd yyyy");
 		endDate = reachTime.ToString("MMMM dd yyyy");
 
-		diff = (reachTime - startTime).ToString(); 
+		diff = (reachTime - startTime).ToString("HH mm");
 	}
 	private async void BookTicket()
 	{
 		var order = new Order()
 			{
-				AvailableVehicles = boardingVehicle,
+
+				AvailableVehicles = availableVehicle,
 				CustomerData = currentContextData.Customers,
 				Id = new Guid(),
-				SearchVehicles = searchVechile
+				SearchVehicles = searchVechile,
+				IsCancelled = false
 			};
 		await OrderedVehicle.InvokeAsync(order);
 		SendMessage();
@@ -67,6 +70,6 @@
 	}
 	async void SendMessage()
 	{
-		// for calling external Api like twilio
+		// for calling external Api like twilio for implemention of sending message
 	}
 }
